@@ -17,7 +17,7 @@ use binomial search for ordered arrays'''
 #1. Largest subarray sum problem
 #O(n) - running through the array once
 #the idea is to create to sum variables: running_sum vs. max sum, and then start adding array values consequitively
-#if running sum > max sum: update the max_sum
+#if  running sum > max sum: update the max_sum
 #if running sum <max sum: If it's negatve then reset it to 0, if it's positive - keep going
 
 a = [-1,-2,3,4,5,-8]
@@ -29,10 +29,8 @@ e = [1,2,4,5,6]
 def Max_Sum(arr):
     curr_sum = 0
     max_sum = 0
-    if arr is None:
-        return Null
-    if len(arr) == 0:
-        return None
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
     for i in arr:
         curr_sum = curr_sum + i
         if curr_sum> max_sum:
@@ -47,14 +45,16 @@ print ('#1. Largest subarrays sums:\na ', Max_Sum(a),'\nb:', Max_Sum(b), '\nc:',
 #2. Find missing value in a list of 1...n integers
 '''Subtract the sum of all elemnts from the sum of arithmetic progression from 1 to n. O(n) running time.
 Formulas for sum of arithmetic progression:
-general one: (max(arr)+min(arr))*max(arr)/2 (the sum is the same for each consequent pair; we divide it by 2 and multiply by the number of elements)
+general one: (max(arr)+min(arr))*len(arr)/2 (the sum is the same for each consequent pair; we divide it by 2 and multiply by the number of elements)
 special case for 1..n array: (max(arr)+1)*max(arr)/2
 Note that in programming we sometimes go by the index n (starts from 0),
 that is the sum is = (n+1)*(n+2)/2 - where n is number of elements
 '''
 
 def MissingValue (arr):
-    arith_sum = (max(arr)+min(arr))*max(arr)/2
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
+    arith_sum = (max(arr)+min(arr))*(len(arr)+1)/2 #len(arr)+1 - number of elements with missing values
     actual_sum = 0
     for i in arr:
         actual_sum+=i
@@ -69,8 +69,8 @@ print ("Missing value:",MissingValue(e))
 a = [1, 4, 20, 3, 10, 5]
 
 def SubarraySum (arr, n):
-    if len(arr)==0 or arr is None:
-        return Null
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
     start=0
     finish=0
     sum = arr[start]
@@ -95,8 +95,8 @@ a=[0,0,0,1,1,1,2,2,0,1,0]
 b=[]
 
 def SortArray (arr):
-    if len(arr)==0:
-        return arr
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
     zeros=0
     ones=0
     twos = 0
@@ -167,10 +167,8 @@ print (Equillibrium(a), '\n\n\n')
 
 a=[16, 17, 4, 3, 5, 2]
 def ArrayLeaders (arr):
-    if len(arr)==0:
-        return arr
-    if arr is None:
-        return Null
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
     i = len(arr)-1
     maximum = arr[i]-1
     while i>=0:
@@ -192,8 +190,8 @@ print (K_smallest([7, 10, 4, 3, 20, 15],3))
 #9. Given a 2D array, print it in spiral form. 
 a=[[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 def SpiralForm(arr):
-    if len(arr)==0:
-        return arr
+    if arr is None or len(arr) == 0:
+        raise exception ('The array is empty')
     if arr is None:
         return Null
     for i in range (0,len(arr)):
