@@ -158,7 +158,37 @@ def Roman (s):
                         j=-1 #getting out of the loop
     return sum
 print ('#4.',Roman ('XIX'))
-            
+
+#7.Your task  is to implement the function atoi. The function takes a string(str) as argument and converts it to an integer and returns it.
+def atoi (s):
+    if s is None:
+        raise Exception ('Empty string!')
+    s=list(s)
+    integer,j=0,1
+    for i in range (len(s)-1,-1,-1):
+        integer+=int(s[i])*j
+        j*=10
+    return integer
+print ('#7.', atoi('123400000000'))
+
+#8. Your task  is to implement the function strstr. The function takes two strings as arguments(s,x) and  locates the occurrence of the string x in the string s. The function returns and integer denoting  the first occurrence of the string x .
+def strstr(s,x):
+    if s is None or len(s) == 0 or len(x) == 0 or len(x)>len(s):
+        return None
+    s=list(s)
+    x=list(x)
+    for i in range (0,len(s)-len(x)):
+        if s[i]==x[0]:
+            j=i
+            while s[i]==x[i-j]:
+                if i-j==len(x)-1:
+                    return j
+                else:
+                    i+=1
+                
+    return None
+    
+print ('#8.', strstr('abcdefg', 'de'))
 
 
 #11. Remove white spaces in the string
