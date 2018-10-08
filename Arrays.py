@@ -23,14 +23,14 @@ use binomial search for ordered arrays'''
 a = [-1,-2,3,4,5,-8]
 b = [0,0,0,0]
 c = [1,2,3,4,5]
-d = []
+d = [111]
 e = [1,2,4,5,6]
 
 def Max_Sum(arr):
     curr_sum = 0
     max_sum = 0
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     for i in arr:
         curr_sum = curr_sum + i
         if curr_sum> max_sum:
@@ -53,7 +53,7 @@ that is the sum is = (n+1)*(n+2)/2 - where n is number of elements
 
 def MissingValue (arr):
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     arith_sum = (max(arr)+min(arr))*(len(arr)+1)/2 #len(arr)+1 - number of elements with missing values
     actual_sum = 0
     for i in arr:
@@ -70,7 +70,7 @@ a = [1, 4, 20, 3, 10, 5]
 
 def SubarraySum (arr, n):
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     start=0
     finish=0
     sum = arr[start]
@@ -92,11 +92,11 @@ print(SubarraySum(a,33))
 #5.Write a program to sort an array of 0's,1's and 2's in ascending order.
 '''Solve internally - use counters instead of swabbing. O(2n)'''
 a=[0,0,0,1,1,1,2,2,0,1,0]
-b=[]
+b=[0,0]
 
 def SortArray (arr):
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     zeros=0
     ones=0
     twos = 0
@@ -109,29 +109,22 @@ def SortArray (arr):
             twos+=1
         if i<0 or i>2:
             raise ValueError('Array elements should be 0, 1 or 2')
-        if len(arr)==1:
-            return arr
-    if zeros>0 and zeros==len(arr):
-        arr=0
-    else:
-        if zeros>0:
-            for j in range (zeros):
-                a[j]=0
-    if ones>0 and ones==len(arr):
-        arr=1
-    else:
-        if ones>0:
-            for j in range (zeros,zeros+ones):
-                a[j]=1
-    if twos>0 and twos==len(arr):
-        arr=1
-    else:
-        if twos>0:
-            for j in range (zeros+ones,len(arr)):
-                a[j]=2
+    j=0
+    while zeros>0:
+        arr[j]=0
+        zeros-=1
+        j+=1
+    while ones>0:
+        arr[j]=1
+        ones-=1
+        j+=1
+    while twos>0:
+        arr[j]=2
+        twos-=1
+        j+=1
     return arr
 print('\n\n#5. ') 
-print (SortArray (b), '\n\n\n')
+print (SortArray (a), '\n\n\n')
 
 #6. Write a function int equilibrium(int[] arr, int n); that given a sequence arr[] of size n, returns an equilibrium index (if any) or -1 if no equilibrium indexes exist.
 #O(2n)
@@ -168,7 +161,7 @@ print (Equillibrium(a), '\n\n\n')
 a=[16, 17, 4, 3, 5, 2]
 def ArrayLeaders (arr):
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     i = len(arr)-1
     maximum = arr[i]-1
     while i>=0:
@@ -191,7 +184,7 @@ print (K_smallest([7, 10, 4, 3, 20, 15],3))
 a=[[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 def SpiralForm(arr):
     if arr is None or len(arr) == 0:
-        raise exception ('The array is empty')
+        raise Exception ('The array is empty')
     if arr is None:
         return Null
     for i in range (0,len(arr)):
