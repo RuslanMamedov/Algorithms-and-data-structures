@@ -139,7 +139,7 @@ def Equillibrium(arr):
     sum=0
     while pointer+1<len(arr):
         sum+=arr[pointer]
-        if sum==(total_sum-arr[pointer+1])/2:
+        if sum*2+arr[pointer+1]==total_sum:
             return pointer+1
         else:
             pointer+=1
