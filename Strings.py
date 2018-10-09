@@ -57,7 +57,7 @@ print ('#1.',PalSubstring('m'))
 
 #2.recursively remove adjacent duplicate characters from string. 
 #The output string should not have any adjacent duplicates.          
-            
+
 def RemoveDup(s):
     if s is None or len(s)==0:
         return None   
@@ -65,13 +65,13 @@ def RemoveDup(s):
         return s
     s = list(s)
     new_s=''
-    for i in range (0, len(s)-1, 1): #excluding the last character
-        if s[i]!=s[i+1]:#adding characters to new string
+    for i in range (0,len(s)-1): #excluding the last character
+        if s[i]!=s[i+1]: #adding noncontiguos characters to new string
             if i == len(s)-2:
                 new_s+=s[i]+s[i+1] #including the last character when it's different from the previous one
             else:
-                new_s+=s[i] 
-        else: #skipping contiguos characters
+                new_s+=s[i]
+        else: #skipping contiguous characters
             while i<len(s)-1 and s[i]==s[i+1]:
                 i+=1
                 if i == len(s)-2:
@@ -79,12 +79,12 @@ def RemoveDup(s):
                         i+=1 #when the last character needs to be excluded
                     else:
                         new_s+=s[i+1]
-    if len (new_s)<len(s):
+    '''if len (new_s)<len(s):
         return RemoveDup(new_s)
-    else:
-        return new_s
+    else:'''
+    return new_s
             
-print ('#2.', RemoveDup('aaaaaaaaabbbbc'))
+print ('#2.', RemoveDup('aaaabbb333334'))
     
 #3. Given two strings, the task is to find if a string ('a') can be obtained by rotating another string ('b') by two places.
 #O(n)
@@ -158,7 +158,7 @@ def Roman (s):
                         j=-1 #getting out of the loop
     return sum
 print ('#4.',Roman ('XIX'))
-
+            
 #7.Your task  is to implement the function atoi. The function takes a string(str) as argument and converts it to an integer and returns it.
 def atoi (s):
     if s is None:
@@ -189,8 +189,34 @@ def strstr(s,x):
     return None
     
 print ('#8.', strstr('abcdefg', 'de'))
-
-
+       
+#9. Given a array of Nstrings, find the longest common prefix among all strings present in the array.
+def Prefix(arr): 
+    for i in range (0,len(arr)):
+        if len(arr[i])==0 or arr[i] is None:
+            raise Exception ('Empty string!')
+        arr[i]=arr[i].lower()
+        arr[i]=list(arr[i])
+    prefix = ''
+    j=0
+    while j>=0: #to keep the loop running until it is broken within
+        for i in range (0,len(arr)):
+            if i == 0:
+                c= arr[i][j]
+            if j>=len(arr[i]):
+                return prefix # to check for the length of the word
+            if arr[i][j]==c and i==len(arr)-1:
+                prefix=prefix+arr[i][j]
+            if arr[i][j]!=c:
+                if prefix == '':
+                    return False
+                else:
+                    return prefix
+        j+=1
+arr=['apple','ape', 'April']
+print ('#9.',Prefix(arr))
+        
+        
 #11. Remove white spaces in the string
 s='I love you'
 
