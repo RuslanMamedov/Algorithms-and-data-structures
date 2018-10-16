@@ -12,6 +12,7 @@ class Node:
     def __init__(self,data):
         self.data = data
         self.next = None 
+        self.random = None #random pointer
 node1 = Node('a') 
 node2 = Node('b') 
 node3 = Node('c')
@@ -86,5 +87,76 @@ def Circular(head):
             return s.data
     return False
 print ('#2.',Circular(node1))
-    
-#6. Reverse a linked list
+
+#3.Clone a linked list with a random pointer.
+node6.next = None
+def Clone (head):
+    p=head
+    if head==None: #empty linked list
+        return False
+    while p!=None: #clonning the nodes
+        p.random = Node(p.data+'2')
+        p = p.next
+    p = head    
+    while p.next!=None: #linking the nodes
+        p.random.next = p.next.random
+        p = p.next
+    p.random.next = None #taking care of the last node
+    p = head
+    head2 = p.random
+    new_list = head2
+    while p!=None: #unlinking 2 lists
+        p.random = None
+        p = p.next
+    while head2 !=None:
+        print (head2.data)
+        head2 = head2.next
+    return new_list
+print ('#3',Clone(node1)) #O(3n)
+
+#4. Write code to remove duplicates from an unsorted linked list. Follow up: How would you solve it if temporary buffer is not allowed?
+def RemoveDups(head):
+    if head==None: #empty linked list
+        return False
+    d = {}
+    p = head
+    d [p.data]=1
+    while p.next!=None:
+        if p.next.data in d:
+            if p.next.next==None:
+                p.next = None
+            else:
+                p.next = p.next.next
+        else:
+            d [p.next.data]=1
+            p = p.next
+    p=head
+    while p!= None:
+        print (p.data)
+        p=p.next
+    print(d)
+    return head
+print ('#4',RemoveDups(node1))       
+
+#5. Implement an algorithm to find the kth to the last element of a singly linked list
+def Kth(head, k): #O(2n)
+    if head==None: #empty linked list
+        return False
+    p=head
+    counter = 0
+    while p!=None:
+        counter+=1
+        p=p.next
+    counter = counter - k
+    if counter<=0:
+        return False
+    p=head
+    while counter>0:
+        p = p.next
+        counter-=1
+    p=head
+    while p!= None:
+        print (p.data)
+        p=p.next
+    return head
+print('5',Kth(node1,2))
