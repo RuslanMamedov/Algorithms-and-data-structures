@@ -65,26 +65,32 @@ def RemoveDup(s):
         return s
     s = list(s)
     new_s=''
-    for i in range (0,len(s)-1): #excluding the last character
+    i = 0
+    while i<len(s)-1: #excluding the last character
         if s[i]!=s[i+1]: #adding noncontiguos characters to new string
             if i == len(s)-2:
                 new_s+=s[i]+s[i+1] #including the last character when it's different from the previous one
+                #print (i)
             else:
                 new_s+=s[i]
+                print (i)
         else: #skipping contiguous characters
             while i<len(s)-1 and s[i]==s[i+1]:
                 i+=1
+                print('skip ',s[i], i)
                 if i == len(s)-2:
                     if s[i]==s[i+1]:
                         i+=1 #when the last character needs to be excluded
                     else:
                         new_s+=s[i+1]
-    '''if len (new_s)<len(s):
+        i+=1
+                        
+    if len (new_s)<len(s):
         return RemoveDup(new_s)
-    else:'''
-    return new_s
+    else:
+        return new_s
             
-print ('#2.', RemoveDup('aaaabbb333334'))
+print ('#2.', RemoveDup('aaaagbbbccc'))
     
 #3. Given two strings, the task is to find if a string ('a') can be obtained by rotating another string ('b') by two places.
 #O(n)
@@ -338,21 +344,3 @@ def Unique (s):
     return d.keys()
 
 print (Unique(s))
-
-
-
-    
-    
-
-            
-            
-        
-        
-    
-        
-    
-
-    
-
-    
-
